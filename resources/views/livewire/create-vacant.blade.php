@@ -1,17 +1,15 @@
 <form
     class="md:w-1/2 space-y-5"
-    action=""
+    wire:submit.prevent="createVacant"
 >
-    @csrf
-
-    <!-- Vacant Title -->
+     <!-- Vacant Title -->
     <div>
         <x-input-label for="title" :value="__('Titulo Vacante')" />
         <x-text-input 
             id="title" 
             class="block mt-1 w-full" 
             type="text" 
-            name="title" 
+            wire:model="title" 
             :value="old('title')"
             placeholder="Titulo Vacante"
         />
@@ -24,14 +22,14 @@
   
         <select
             class="border-gray-300 w-full mt-1 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
-            name="salary" id="salary">
+            wire:model="salary" id="salary">
 
-            <option value="" disabled selected>Seleccione</option>
+            <option value="" selected>-- Selecciona --</option>
             @foreach ($salaries as $salary)
                 <option value="{{ $salary->id }}">{{ $salary->salary }}</option>                
             @endforeach
         </select>
-        <x-input-error :messages="$errors->get('role')" class="mt-2" />
+        <x-input-error :messages="$errors->get('salary')" class="mt-2" />
     </div>
 
     <!-- Categories -->
@@ -40,14 +38,14 @@
   
         <select
             class="border-gray-300 w-full mt-1 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
-            name="category" id="category">
+            wire:model="category" id="category">
 
-            <option value="" disabled selected>Seleccione</option>
+            <option value="" selected>-- Selecciona --</option>
             @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->category }}</option>
             @endforeach
         </select>
-        <x-input-error :messages="$errors->get('role')" class="mt-2" />
+        <x-input-error :messages="$errors->get('category')" class="mt-2" />
     </div>
 
     <!-- Company -->
@@ -57,7 +55,7 @@
             id="company" 
             class="block mt-1 w-full" 
             type="text" 
-            name="company" 
+            wire:model="company" 
             :value="old('company')"
             placeholder="Empresa: ej. DevJobs"
         />
@@ -71,7 +69,7 @@
             id="last_day" 
             class="block mt-1 w-full" 
             type="date" 
-            name="last_day" 
+            wire:model="last_day" 
             :value="old('last_day')"
         />
         <x-input-error :messages="$errors->get('last_day')" class="mt-2" />
@@ -82,11 +80,11 @@
         <x-input-label for="job_description" :value="__('Descripcion Puesto')" />
        <textarea
             id="job_description"
-            name="job_description"
+            wire:model="job_description"
             class="border-gray-300 w-full mt-1 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
             placeholder="Descripcion Puesto"
        ></textarea>
-        <x-input-error :messages="$errors->get('last_day')" class="mt-2" />
+        <x-input-error :messages="$errors->get('job_description')" class="mt-2" />
     </div>
     
     <!-- Image  -->
@@ -96,8 +94,14 @@
             id="image" 
             class="block mt-1 w-full" 
             type="file" 
-            name="image" 
+            wire:model="image"
+            accept="image/*"
         />
+
+        @if ($image)
+            <img  class="my-5 w-96" src="{{ $image->temporaryUrl() }}" alt="Imagen Vacante">
+        @endif
+
         <x-input-error :messages="$errors->get('image')" class="mt-2" />
     </div>
 
