@@ -2,12 +2,18 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Salary;
 use Livewire\Component;
 
 class CreateVacant extends Component
 {
     public function render()
     {
-        return view('livewire.create-vacant');
+
+        $salaries = Salary::all();
+
+        return view('livewire.create-vacant', [
+            'salaries' => $salaries
+        ]);
     }
 }
