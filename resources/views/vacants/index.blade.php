@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            @if (session('')->has('message'))
+            @if (session()->has('message'))
                 <div class="mb-4 font-medium text-xl text-green-600 dark:text-green-400 bg-green-600">
                     <p>{{ session('message') }}</p>
                 </div>                
