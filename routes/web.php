@@ -19,12 +19,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [VacantController::class, 'index'])->middleware(['auth', 'verified'])->name('vacants.index');
+// Route::get('/dashboard', [VacantController::class, 'index'])->middleware(['auth', 'verified'])->name('vacants.index');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'verified')->group(function () {
+    Route::get('/dashboard', [VacantController::class, 'index'])->name('vacants.index');
+
+    // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Vacants
+    Route::get('/vacants/create', [VacantController::class, 'create'])->name('vacants.create');
 });
 
 require __DIR__.'/auth.php';
