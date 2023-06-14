@@ -4,7 +4,7 @@
             <div
                 class="p-6 text-gray-900 dark:text-gray-100 border-b border-gray-200 last:border-none md:flex md:justify-between md:items-center">
                 <div class="space-y-3">
-                    <a href="#" class="text-xl font-bold text-indigo-500">
+                    <a href="{{ route('vacants.show', $vacant->id) }}" class="text-xl font-bold text-indigo-500">
                         {{ $vacant->title }}
                     </a>
                     <p class="text-sm text-indigo-400 font-bold">
