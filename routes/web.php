@@ -31,10 +31,9 @@ Route::middleware('auth', 'verified')->group(function () {
 
     // Vacants
     Route::get('/vacants/create', [VacantController::class, 'create'])->name('vacants.create');
-    Route::get('/vacants/{vacant}/edit', [VacantController::class, 'edit'])->name('vacants.edit');
-    Route::get('/vacants/{vacant}', [VacantController::class, 'show'])->name('vacants.show');
-
-
+    Route::get('/vacants/{vacant}/edit', [VacantController::class, 'edit'])->name('vacants.edit');   
 });
+
+Route::get('/vacants/{vacant}', [VacantController::class, 'show'])->name('vacants.show');
 
 require __DIR__.'/auth.php';
