@@ -9,6 +9,8 @@ class Vacant extends Model
 {
     use HasFactory;
 
+    protected $casts = [ 'last_day'=>'date'];
+
     protected $fillable = [
         'title',
         'category_id',
