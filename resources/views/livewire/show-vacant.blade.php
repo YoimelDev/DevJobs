@@ -35,5 +35,16 @@
                 </div>
             </section>
         </div>
+
+      @guest
+        <div class="mt-5 bg-gray-100 dark:bg-gray-700 rounded-lg border border-dashed p-5 text-center">
+            <p class="dark:text-white">
+                Deseas aplicar a esta vacante? 
+                <a href="{{ route('register') }}">
+                    <span class="font-semibold text-indigo-500">Postulate</span>
+                </a>
+            </p>
+        </div>
+      @endguest
     </section>
 </div>
