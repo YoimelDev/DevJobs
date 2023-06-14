@@ -11,9 +11,11 @@ class VacantPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(User $user): Response
     {
-        //
+        return $user->role === 2 // 1 = developer, 2 = reclutador
+            ? Response::allow()
+            : Response::deny('Usted no es un reclutador.');
     }
 
     /**
@@ -27,9 +29,11 @@ class VacantPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(User $user): Response
     {
-        //
+        return $user->role === 2 // 1 = developer, 2 = reclutador
+            ? Response::allow()
+            : Response::deny('Usted no es un reclutador.');
     }
 
     /**
