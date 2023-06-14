@@ -31,6 +31,7 @@ Route::middleware('auth', 'verified')->group(function () {
 
     // Vacants
     Route::get('/vacants/create', [VacantController::class, 'create'])->name('vacants.create');
+    Route::get('/vacants/{vacant}/edit', [VacantController::class, 'edit'])->name('vacants.edit');
 });
 
 require __DIR__.'/auth.php';
