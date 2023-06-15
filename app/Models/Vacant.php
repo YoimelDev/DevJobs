@@ -31,4 +31,13 @@ class Vacant extends Model
     public function salary(){
         return $this->belongsTo(Salary::class);
     }
+
+    public function candidates(){
+        return $this->hasMany(Candidate::class);
+    }
+
+    // Saber si el usuario aplico a la vacante
+    public function userApplied(){
+        return $this->candidates->contains('user_id', auth()->user()->id);
+    }
 }

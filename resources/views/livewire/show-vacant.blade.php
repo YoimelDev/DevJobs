@@ -48,7 +48,9 @@
       @endguest
     </section>
 
-    @cannot('create', App\Models\Vacant::class)
-        <livewire:apply-vacant />        
-    @endcannot
+    @auth
+        @cannot('create', App\Models\Vacant::class)
+            <livewire:apply-vacant :vacant="$vacant" />        
+        @endcannot
+    @endauth
 </div>
